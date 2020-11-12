@@ -1,0 +1,13 @@
+#!/usr/bin/make -f
+
+#setting locale explicitly is needed for running the tests using pbuilder
+export LC_ALL=C.UTF-8
+export LANG=C.UTF-8
+export PYBUILD_TEST_PYTEST=1
+export PYBUILD_BEFORE_TEST=cp -r {dir}/tests {build_dir}
+export PYBUILD_AFTER_TEST=rm -rf {build_dir}/tests
+
+export PYBUILD_NAME=click-plugins
+
+%:
+	dh  $@ --with python3 --buildsystem pybuild

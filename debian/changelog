@@ -1,0 +1,84 @@
+python-click-plugins (1.1.1-3) unstable; urgency=medium
+
+  * Team upload.
+  * Bump Standards-Version to 4.5.0, no changes.
+  * Drop Name field from upstream metadata.
+  * Bump debhelper compat to 10, changes:
+    - Drop --parallel option, enabled by default
+  * Bump watch file version to 4.
+  * Update lintian overrides.
+
+ -- Bas Couwenberg <sebastic@debian.org>  Thu, 12 Nov 2020 12:46:01 +0100
+
+python-click-plugins (1.1.1-2) unstable; urgency=medium
+
+  * Team upload.
+  * Bump Standards-Version to 4.4.0, no changes.
+  * Drop Python 2 support.
+
+ -- Bas Couwenberg <sebastic@debian.org>  Fri, 23 Aug 2019 20:53:07 +0200
+
+python-click-plugins (1.1.1-1) unstable; urgency=medium
+
+  * Team upload.
+  * Update gbp.conf to use --source-only-changes by default.
+  * Move from experimental to unstable.
+
+ -- Bas Couwenberg <sebastic@debian.org>  Sun, 07 Jul 2019 12:25:52 +0200
+
+python-click-plugins (1.1.1-1~exp1) experimental; urgency=medium
+
+  * Team upload.
+  * New upstream release.
+  * Update copyright years for copyright holders.
+  * Bump Standards-Version to 4.3.0, no changes.
+  * Update copyright years for Kevin D. Wurster & Sean C. Gillies.
+
+ -- Bas Couwenberg <sebastic@debian.org>  Fri, 05 Apr 2019 19:52:06 +0200
+
+python-click-plugins (1.0.4-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream release.
+    (closes: #908684)
+  * Bump Standards-Version to 4.2.1, no changes.
+
+ -- Bas Couwenberg <sebastic@debian.org>  Sun, 16 Sep 2018 08:13:58 +0200
+
+python-click-plugins (1.0.2-3) unstable; urgency=medium
+
+  * Team upload.
+  * Bump Standards-Version to 4.2.0, no changes.
+  * Drop autopkgtests to test installability & module import.
+  * Add lintian override for testsuite-autopkgtest-missing.
+  * Update watch file to use releases instead of tags.
+  * Update watch file to limit matches to archive path.
+
+ -- Bas Couwenberg <sebastic@debian.org>  Sat, 18 Aug 2018 19:28:42 +0200
+
+python-click-plugins (1.0.2-2) unstable; urgency=medium
+
+  * Team upload.
+  * Strip trailing whitespace from control file.
+  * Update copyright-format URL to use HTTPS.
+  * Update Vcs-* URLs for Salsa.
+  * Bump Standards-Version to 4.1.5, no changes.
+  * Add autopkgtest installability & module import tests.
+  * Add upstream metadata.
+
+ -- Bas Couwenberg <sebastic@debian.org>  Sun, 29 Jul 2018 18:37:02 +0200
+
+python-click-plugins (1.0.2-1) unstable; urgency=medium
+
+  * Add README.rst to debian/docs
+  * Imported Upstream version 1.0.2
+  * Add tests
+  * Update uploader mailadress
+
+ -- Johan Van de Wauw <johan@vandewauw.be>  Thu, 24 Sep 2015 00:49:52 +0200
+
+python-click-plugins (1.0-1) unstable; urgency=medium
+
+  * Initial release (Closes: #794816)
+
+ -- Johan Van de Wauw <johan.vandewauw@gmail.com>  Tue, 11 Aug 2015 13:06:58 +0200
