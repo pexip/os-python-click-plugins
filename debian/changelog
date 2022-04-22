@@ -1,90 +1,625 @@
-python-click-plugins (1.1.1-3pexip1) pexip-bullseye; urgency=medium
+celery (5.2.6-1) unstable; urgency=low
 
-  * Prepare Pexip packaging
-
- -- Mark Hymers <mark.hymers@pexip.com>  Thu, 21 Jul 2022 17:12:55 +0100
-
-python-click-plugins (1.1.1-3) unstable; urgency=medium
-
-  * Team upload.
-  * Bump Standards-Version to 4.5.0, no changes.
-  * Drop Name field from upstream metadata.
-  * Bump debhelper compat to 10, changes:
-    - Drop --parallel option, enabled by default
-  * Bump watch file version to 4.
-  * Update lintian overrides.
-
- -- Bas Couwenberg <sebastic@debian.org>  Thu, 12 Nov 2020 12:46:01 +0100
-
-python-click-plugins (1.1.1-2) unstable; urgency=medium
-
-  * Team upload.
-  * Bump Standards-Version to 4.4.0, no changes.
-  * Drop Python 2 support.
-
- -- Bas Couwenberg <sebastic@debian.org>  Fri, 23 Aug 2019 20:53:07 +0200
-
-python-click-plugins (1.1.1-1) unstable; urgency=medium
-
-  * Team upload.
-  * Update gbp.conf to use --source-only-changes by default.
-  * Move from experimental to unstable.
-
- -- Bas Couwenberg <sebastic@debian.org>  Sun, 07 Jul 2019 12:25:52 +0200
-
-python-click-plugins (1.1.1-1~exp1) experimental; urgency=medium
-
-  * Team upload.
   * New upstream release.
-  * Update copyright years for copyright holders.
-  * Bump Standards-Version to 4.3.0, no changes.
-  * Update copyright years for Kevin D. Wurster & Sean C. Gillies.
+  * Set github project as new homepage (Closes: #975386).
+  * Clean up celery.egg-info/entry_points.txt to allow two builds in a
+    row.
+  * Update year in d/copyright.
 
- -- Bas Couwenberg <sebastic@debian.org>  Fri, 05 Apr 2019 19:52:06 +0200
+ -- Michael Fladischer <fladi@debian.org>  Fri, 22 Apr 2022 22:13:40 +0000
 
-python-click-plugins (1.0.4-1) unstable; urgency=medium
+celery (5.2.3-1) unstable; urgency=low
 
-  * Team upload.
   * New upstream release.
-    (closes: #908684)
-  * Bump Standards-Version to 4.2.1, no changes.
+  * Refresh patches, drop 0012-Update-test-for-the-Debian-version-of-
+    pymongo.patch.
+  * Disable failing mongodb test.
 
- -- Bas Couwenberg <sebastic@debian.org>  Sun, 16 Sep 2018 08:13:58 +0200
+ -- Michael Fladischer <fladi@debian.org>  Thu, 30 Dec 2021 18:36:11 +0000
 
-python-click-plugins (1.0.2-3) unstable; urgency=medium
+celery (5.2.2-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Michael Fladischer <fladi@debian.org>  Mon, 27 Dec 2021 22:25:50 +0000
+
+celery (5.2.1-1) unstable; urgency=low
+
+  * New upstream release.
+  * Refresh and renumber patches.
+  * Add python3-click-plugins to Build-Depends, required by tests.
+  * Bump Standards-Version to 4.6.0.1.
+  * Use uscan version 4.
+  * Add python3-flaky and python3-pytest-subtests to Build-Depends.
+  * Fix missing and changed paths in doc-base registration.
+  * Install testfiles using d/pybuild.testfiles.
+  * Configure tests using pybuild environment variables instead of
+    debhelper override.
+  * Update year in d/copyright.
+  * Depend on python3-all for autopkgtests.
+  * Add d/upstream/metadata.
+  * Skip broken tests in autopkgtest.
+
+ -- Michael Fladischer <fladi@debian.org>  Thu, 25 Nov 2021 10:48:23 +0000
+
+celery (5.0.0-3) unstable; urgency=medium
 
   * Team upload.
-  * Bump Standards-Version to 4.2.0, no changes.
-  * Drop autopkgtests to test installability & module import.
-  * Add lintian override for testsuite-autopkgtest-missing.
-  * Update watch file to use releases instead of tags.
-  * Update watch file to limit matches to archive path.
+  * d/tests/upstream: Use celery pytest plugin for autopkgtest too.
+    (Closes: #972926)
 
- -- Bas Couwenberg <sebastic@debian.org>  Sat, 18 Aug 2018 19:28:42 +0200
+ -- Michael Hudson-Doyle <mwhudson@debian.org>  Tue, 03 Nov 2020 13:08:49 +1300
 
-python-click-plugins (1.0.2-2) unstable; urgency=medium
+celery (5.0.0-2) unstable; urgency=medium
 
   * Team upload.
-  * Strip trailing whitespace from control file.
-  * Update copyright-format URL to use HTTPS.
-  * Update Vcs-* URLs for Salsa.
-  * Bump Standards-Version to 4.1.5, no changes.
-  * Add autopkgtest installability & module import tests.
-  * Add upstream metadata.
+  * Tighten dependency on python-kombu (>= 5.0)
 
- -- Bas Couwenberg <sebastic@debian.org>  Sun, 29 Jul 2018 18:37:02 +0200
+ -- Antonio Terceiro <terceiro@debian.org>  Mon, 26 Oct 2020 13:45:54 -0300
 
-python-click-plugins (1.0.2-1) unstable; urgency=medium
+celery (5.0.0-1) unstable; urgency=medium
 
-  * Add README.rst to debian/docs
-  * Imported Upstream version 1.0.2
-  * Add tests
-  * Update uploader mailadress
+  * Team upload.
 
- -- Johan Van de Wauw <johan@vandewauw.be>  Thu, 24 Sep 2015 00:49:52 +0200
+  [ Ondřej Nový ]
+  * d/control: Update Maintainer field with new Debian Python Team
+    contact address.
+  * d/control: Update Vcs-* fields with new Debian Python Team Salsa
+    layout.
 
-python-click-plugins (1.0-1) unstable; urgency=medium
+  [ Antonio Terceiro ]
+  * New upstream version 5.0.0
 
-  * Initial release (Closes: #794816)
+  [ Thomas Goirand ]
+  * Add a new (build-)dependencies on:
+    - python3-click-repl
+    - python3-click-didyoumean
+  * Min version for python3-vine is now 5.0.
+  * Add build-depends:
+    - python3-pytest-timeout
+  * Add 0010-allow-any-version-of-pytest-timeout.patch.
+  * Add 0011-remove-pytest-celery-from-test-depends.patch.
+  * Add 0012-allow-any-pytest-version.patch.
+  * Add a debian/salsa-ci.yml.
 
- -- Johan Van de Wauw <johan.vandewauw@gmail.com>  Tue, 11 Aug 2015 13:06:58 +0200
+  [ Nicolas Dandrimont ]
+  * Use celery pytest plugin for tests
+  * Patch MongoDB backend test for the Debian version of pymongo.
+  * Add build-dependency on python3-sphinx-click.
+
+ -- Nicolas Dandrimont <olasd@debian.org>  Sat, 17 Oct 2020 01:31:50 +0200
+
+celery (4.4.6-1) unstable; urgency=low
+
+  * New upstream release (Closes: #963662).
+  * Drop upstream patch 21366ffe04aeb69ea08dc5c48c3b3155eeb443b5.patch.
+  * Refresh patches.
+  * Clean up .pytest_cache/CACHEDIR.TAG to allow two builds in a row.
+  * Add python3-future (>=0.18.0) to Build-Depends, required by tests.
+  * Skip randomly failing test_worker tests.
+
+ -- Michael Fladischer <fladi@debian.org>  Wed, 12 Aug 2020 20:08:45 +0200
+
+celery (4.4.2-5) unstable; urgency=medium
+
+  * Team upload.
+  * Add missing Break+Replaces I forgot while doing the move.  Closes: #960506
+
+ -- Mattia Rizzolo <mattia@debian.org>  Tue, 19 May 2020 11:30:49 +0200
+
+celery (4.4.2-4) unstable; urgency=medium
+
+  * Team upload.
+  * Upload to unstable.
+
+ -- Mattia Rizzolo <mattia@debian.org>  Tue, 12 May 2020 15:04:57 +0200
+
+celery (4.4.2-3) experimental; urgency=medium
+
+  * Team upload.
+  * Move the "celery" script to a new "celery" binary package and turn
+    python-celery-common into an empty transitional package.
+  * d/control: Mark python-celery-doc as Multi-Arch:foreign.
+  * Claim some copyright over debian/*.
+
+ -- Mattia Rizzolo <mattia@debian.org>  Mon, 27 Apr 2020 22:38:40 +0200
+
+celery (4.4.2-2) unstable; urgency=medium
+
+  * Team upload.
+  * Add patch from upstream to fix build with the new sphinx.  Closes: #958986
+  * Bump Build-Depends on python3-sphinx(-celery) to >= 2.0.0.
+  * d/control:
+    + Set Rules-Requires-Root:no.
+    + Bump debhelper compat level to 13.
+  * d/rules:
+    + Move another file from override_dh_clean to d/clean.
+    + Drop override_dh_install and rely on dh_fixperms to fix perms.
+    + Simplify the code using the new execute_after* overrides.
+    + Drop now unused variables.
+
+ -- Mattia Rizzolo <mattia@debian.org>  Mon, 27 Apr 2020 22:23:24 +0200
+
+celery (4.4.2-1) unstable; urgency=medium
+
+  * Team upload
+
+  [ Michael Fladischer ]
+  * Disable PGP signature check in uscan as upstream is not providing a
+    signature for current releases.
+  * Refresh patches.
+
+  [ Stefano Rivera ]
+  * Set -e in autopkgtests, so all failures are caught.
+  * Build-Depend on python3-boto3, python3-msgpack, python3-pymongo,
+    python3-yaml for tests.
+  * Patch:
+    - Don't require pre-commit, it isn't in Debian.
+    - Neither is moto.
+
+  [ Håvard Flaget Aasen ]
+  * New upstream version 4.4.2
+    - Changes in this release closes: #952217
+  * Update Standards-Version to 4.5.0
+  * Update versions for build-dependencies. closes: #913047
+  * Remove override_dh_installchangelogs, unneeded
+  * Rebase patches
+  * Remove patches
+    - 0005-Disable-pytest-3.3-log-capturing-to-avoid-changing-l.patch
+    - 0007-py37-skip-tests.diff
+  * Add patch
+    - 0011-disable-test-for-python3.8.patch
+  * Remove d/upstream/signing-key.asc and d/source/include-binaries
+  * Disable test from d/tests/upstream
+
+ -- Håvard Flaget Aasen <haavard_aasen@yahoo.no>  Wed, 25 Mar 2020 15:20:47 +0100
+
+celery (4.2.1-5) unstable; urgency=medium
+
+  * Team upload.
+  * Fix running tests with pytest 4.
+  * Don't try to run autopkgtests with Python 2.
+
+ -- Andrey Rahmatullin <wrar@debian.org>  Wed, 07 Aug 2019 18:12:10 +0500
+
+celery (4.2.1-4) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * Use debhelper-compat instead of debian/compat.
+
+  [ Michael Fladischer ]
+  * Bump Standards-Version to 4.4.0.
+  * Remove Python2 support.
+  * Remove unnecessary version constraint on python3-mock.
+  * Remove unnecessary Break and Replaces on older packages.
+  * Bump debhelper version to 12.
+
+ -- Michael Fladischer <fladi@debian.org>  Mon, 22 Jul 2019 09:39:34 +0200
+
+celery (4.2.1-3) unstable; urgency=medium
+
+  * Integrate py37-skip-tests patch into gbp-pq.
+  * Add patch to relax version requirements on billiard (Closes:
+    #923719).
+  * Clean up pytest artifacts to allow two builds in a row.
+  * Bump Standards-Version to 4.3.0.
+
+ -- Michael Fladischer <fladi@debian.org>  Thu, 07 Mar 2019 22:14:11 +0100
+
+celery (4.2.1-2) unstable; urgency=medium
+
+  * Team upload.
+  * Skip test_sphinx also in the autopkgtest, like it's done for the
+    regular build.
+
+ -- Mattia Rizzolo <mattia@debian.org>  Thu, 27 Sep 2018 08:06:32 +0200
+
+celery (4.2.1-1) unstable; urgency=medium
+
+  * Team upload.
+
+  [ Ondřej Nový ]
+  * Use 'python3 -m sphinx' instead of sphinx-build for building docs.
+
+  [ Michael Fladischer ]
+  * New upstream release.
+
+  [ Héctor Orón Martínez ]
+  * debian/patches/0008-Python-3.7-compat-issues-4852.patch: new
+    (Closes: #902900)
+
+  [ Michael Fladischer ]
+  * debian/patches/0008-Added-compatibility-with-python-3.7-4902.patch
+    new.
+
+  [ Mattia Rizzolo ]
+  * Add patch from Matthias Klose to skip two failing tests with py3.7.
+
+ -- Mattia Rizzolo <mattia@debian.org>  Wed, 26 Sep 2018 13:17:25 +0200
+
+celery (4.2.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * Replace debian/upstream-signing-key.pgp with debian/upstream/signing-
+    key.asc.
+  * Refresh patches.
+  * Bump minimum kombu version to 4.2.0.
+  * Add patch to remove upper version cap for pytest.
+  * Bump Standards-Version to 4.1.4.
+  * Remove async documentation from doc-base registration as it is no
+    longer shipped by upstream.
+  * Skip sphinx test as it fails and is not directly related to celery.
+  * Fix spelling errors in patch descriptions as flagged by lintian.
+
+ -- Michael Fladischer <fladi@debian.org>  Thu, 21 Jun 2018 16:51:21 +0200
+
+celery (4.1.0-4) unstable; urgency=medium
+
+  * Run upstream tests with pytest instead of nose. Closes: 888407.
+
+ -- Brian May <bam@debian.org>  Tue, 03 Apr 2018 08:38:39 +1000
+
+celery (4.1.0-3) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * d/control: Set Vcs-* to salsa.debian.org
+
+  [ Michael Fladischer ]
+  * Add patch to disable pytest (>=3.3) log capturing to avoid changing
+    log handlers (Closes: #892640).
+  * Bump debhelper compatibility and version to 11.
+  * Bump Standards-Version to 4.1.3.
+  * Enable autopkgtest-pkg-python testsuite.
+  * Always use pristine-tar.
+
+ -- Michael Fladischer <fladi@debian.org>  Wed, 28 Mar 2018 21:32:57 +0200
+
+celery (4.1.0-2) unstable; urgency=low
+
+  * Add python(3)-ephem to Depends to allow for solar based schedules.
+  * Pick upstream patch to fix solar based scheduler.
+  * Refresh patches.
+
+ -- Michael Fladischer <fladi@debian.org>  Wed, 15 Nov 2017 14:58:01 +0100
+
+celery (4.1.0-1) unstable; urgency=low
+
+  * Upload to unstable (Closes: #872270).
+  * Run wrap-and-sort -bast to reduce diff size of future changes.
+  * Build documentation in override_dh_sphinxdoc.
+  * Clean up modified files to allow two builds in a row.
+  * Bump Standards-Version to 4.1.1.
+  * Drop X-Python* headers.
+  * Install all process management integrations as examples in python-
+    celery-common.
+  * Use https:// for uscan URL.
+  * Drop celeryd binary package.
+
+ -- Michael Fladischer <fladi@debian.org>  Wed, 08 Nov 2017 09:04:37 +0100
+
+celery (4.1.0-1~exp1) experimental; urgency=low
+
+  [ Michael Fladischer ]
+  * New upstream release.
+  * Add new upstream signing key.
+  * Refresh patches for 4.1.0.
+  * Bump Standards-Version to 4.0.0.
+  * Fix documentation build:
+    - Switch to python2-sphinx.
+    - Add python2-sphinx-celery to Build-Depends.
+    - Bump versioned dependency on kombu.
+    - Update doc-base registration.
+  * Fix built-time tests by adding missing packages to Build-Depends:
+    - python(3)-pytest
+    - python(3)-case
+    - python(3)-eventlet
+    - python(3)-vine
+  * Clean up modified files to allow two builds in a row.
+  * Remove entrypoint wrappers missing from upstream:
+    - celeryd
+    - celerybeat
+    - celery-multi
+  * Reformat packaging files with cme for better readability.
+  * Add patch disabling intersphinx to prevent network requests during
+    build.
+
+  [ Brian May ]
+  * Apply upstream patch to allow Sphinx to strip memory addresses.
+    Closes: #868808.
+
+ -- Michael Fladischer <fladi@debian.org>  Mon, 31 Jul 2017 17:46:38 +0200
+
+celery (3.1.23-7) unstable; urgency=medium
+
+  * Fix bashisms in initd scripts. Closes: #858298.
+
+ -- Brian May <bam@debian.org>  Thu, 30 Mar 2017 07:55:02 +1100
+
+celery (3.1.23-6) unstable; urgency=medium
+
+  * Change celeryd to depend on python-celery-common instead of python-celery.
+    Closes: #858305.
+  * Add celeryd depends on lsb-base.
+
+ -- Brian May <bam@debian.org>  Fri, 24 Mar 2017 17:00:36 +1100
+
+celery (3.1.23-5) unstable; urgency=medium
+
+  * Move celeryd to admin section. Closes: #832192.
+
+ -- Brian May <bam@debian.org>  Sun, 31 Jul 2016 16:19:29 +1000
+
+celery (3.1.23-4) unstable; urgency=medium
+
+  * Update standards version to 3.9.8
+  * Fix su invocation. Closes: #824786.
+
+ -- Brian May <bam@debian.org>  Wed, 25 May 2016 18:09:45 +1000
+
+celery (3.1.23-2) unstable; urgency=medium
+
+  * Update dependencies. Closes: #823720.
+
+ -- Brian May <bam@debian.org>  Mon, 09 May 2016 11:11:06 +1000
+
+celery (3.1.23-1) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * Fixed VCS URL
+
+  [ Brian May ]
+  * New upstream release.
+
+ -- Brian May <bam@debian.org>  Sun, 17 Apr 2016 19:17:26 +1000
+
+celery (3.1.20-1) unstable; urgency=low
+
+  * New upstream release.
+  * Reverse dependencies between python(3)-celery and python-celery-common as
+    the later only provides supplemental tools depending on the actual
+    implementation.
+  * Refresh patch to remove external assets from documentation.
+  * Bump all dependencies on billiard to >= 3.3.0.22.
+  * Bump all dependencies on kombu to >= 3.0.33.
+  * Demote python-kombu-doc to an unversioned Build-Depends.
+  * Use https in Vcs-Git field.
+
+ -- Michael Fladischer <fladi@debian.org>  Mon, 01 Feb 2016 10:49:26 +0100
+
+celery (3.1.19-3) unstable; urgency=medium
+
+  * Requires python-billiard 3.3.0.21 or later. Closes: #810899.
+
+ -- Brian May <bam@debian.org>  Thu, 14 Jan 2016 11:06:44 +1100
+
+celery (3.1.19-2) unstable; urgency=medium
+
+  * Fix debian/copyright. Closes: #803117.
+
+ -- Brian May <bam@debian.org>  Mon, 30 Nov 2015 12:55:10 +1100
+
+celery (3.1.19-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Add 0007-Update-license.patch from upstream. Closes: #803117.
+
+ -- Brian May <bam@debian.org>  Thu, 19 Nov 2015 10:33:01 +1100
+
+celery (3.1.18-3) unstable; urgency=medium
+
+  * Add 0007-Improve-the-magic-module-check-Closes-801640.patch from upstream
+    to fix magic module check (Closes: #801640).
+  * Add 0008-ci-Tests-passing-on-Python-3.5.patch from upstream to make tests
+    pass on Python3.5.
+  * Update Vcs fields for git migration.
+  * Initialize git-dpm.
+  * Bump debhelper compatibility and version to 9.
+
+ -- Michael Fladischer <fladi@debian.org>  Fri, 16 Oct 2015 18:47:46 +0200
+
+celery (3.1.18-2) unstable; urgency=medium
+
+  * Add fix_test_typos.patch to fix misspelled method names in unit
+    tests (Closes: #795393).
+
+ -- Michael Fladischer <fladi@debian.org>  Thu, 13 Aug 2015 21:07:36 +0200
+
+celery (3.1.18-1) unstable; urgency=medium
+
+  * New upstream release (Closes: #762963).
+  * Drop fix-tests patch since the certificate expiration test is now
+    skipped by upstream.
+  * Refresh patches.
+  * Bump dependencies on python(3)-kombu to >= 3.0.24.
+  * Source /lib/lsb/init-functions in all init scripts.
+  * Drop XS-Testsuite as dpkg can now do autodetection.
+  * Add X-Python3-Version for versions => 3.3.
+  * Change my email address to fladi@debian.org.
+
+ -- Michael Fladischer <fladi@debian.org>  Wed, 20 May 2015 16:01:03 +0200
+
+celery (3.1.13-3) unstable; urgency=low
+
+  * Drop unnecessary versioned dependencies for packages:
+    + python-billiard
+    + python3-billiard
+    + python3-dateutil
+    + python3-kombu
+  * Remove python3-sphinx from Build-Depends as it is never used.
+  * Rename licenses in d/copyright to conform to version 1.0 machine-
+    readable names.
+  * Update years and names/mail-adresses in d/copyright.
+  * Move manpages to python-celery-common package.
+  * Move supervisor configuration example to python-celery-common
+    package.
+  * Install README.rst as documentation in python3-celery package.
+  * Bump Standards-Version to 3.9.6.
+  * Specify unique descriptions for each package.
+  * Add DEP3 header to fix_tests patch.
+  * Remove unused license section for BSD-3-clause after pool.py has
+    been dropped by upstream.
+  * Do not install manpages for scripts that are no longer present.
+  * Line-wrap fields in d/control.
+
+ -- Michael Fladischer <FladischerMichael@fladi.at>  Tue, 21 Oct 2014 15:59:31 +0200
+
+celery (3.1.13-2) unstable; urgency=low
+
+  [Brian May]
+  * Remove version requirement in wrappers. Closes: #758640.
+  * Add breaks/replaces for python-celery-common as it now contains files
+    formally in python-celery.
+
+  [Michael Fladischer]
+  * Remove PHONY target declarations in d/rules.
+
+ -- Brian May <bam@debian.org>  Thu, 21 Aug 2014 09:03:40 +1000
+
+celery (3.1.13-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Brian May <bam@debian.org>  Mon, 18 Aug 2014 13:30:19 +1000
+
+celery (3.1.12-2) unstable; urgency=medium
+
+  [ Michael Fladischer ]
+  * Drop python-cl from Depends and Build-Depends as it is no longer needed.
+
+  [ Brian May ]
+  * Python3 package. Closes: #753555.
+  * Change certificate test, as test certificate has expired. Closes: #757897.
+
+ -- Brian May <bam@debian.org>  Wed, 13 Aug 2014 12:13:59 +1000
+
+celery (3.1.12-1) unstable; urgency=low
+
+  * New upstream release.
+  * Drop python-sphinxcontrib.issuetracker from Build-Depends as it is no
+    longer needed (Closes: #750528).
+  * Bump Depends and Build-Depends for kombu to 3.0.19.
+  * Add autopkgtest that runs the upstream test suite against the installed
+    packages.
+
+ -- Michael Fladischer <FladischerMichael@fladi.at>  Tue, 24 Jun 2014 22:37:27 +0200
+
+celery (3.1.11-1) unstable; urgency=low
+
+  * New upstream release.
+  * Refresh patches.
+  * Check PGP signature on upstream tarball:
+    + Add signature URL to debian/watch.
+    + Include upstream public PGP key 030A2708.
+    + Allow debian/upstream-signing-key.pgp to be included as a binary.
+  * Replace duplicate file in documentation with symlink.
+  * Bump Build-Depends and Depends for python-billiard to (>= 3.3.0.17).
+  * Bump Build-Depends and Depends for python-kombu to (>= 3.0.15).
+  * Update files in celery.egg-info to be cleaned.
+
+ -- Michael Fladischer <FladischerMichael@fladi.at>  Wed, 23 Apr 2014 15:31:00 +0200
+
+celery (3.1.9-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Refresh patches.
+  * Drop fix_dependencies.patch, as it is no longer needed.
+  * Add privacy.patch to drop external assets from documentation.
+  * Bump Build-Depends and Depends on python-billiard to >= 3.3.15.
+  * Bump Build-Depends and Depends on python-kombu to >= 3.0.12.
+  * Manually copy logo image to documentation as it does not get picked up by
+    sphinx automatically.
+
+ -- Michael Fladischer <FladischerMichael@fladi.at>  Tue, 11 Feb 2014 13:33:47 +0100
+
+celery (3.1.6-1) unstable; urgency=low
+
+  [ Michael Fladischer ]
+  * New upstream release (Closes: #711338).
+  * Bump Standards version to 3.9.5.
+  * Bump Build-Depends on debhelper to >= 8.1.0 to satisfy build-arch
+    and build-indep targets.
+  * Add build dependency on python-openssl to enable more tests.
+  * Add drop_downgrade.patch to remove upstream celery.app detection and
+    removal code.
+  * Add disable_unstable_tests.patch to disable randomly failing test.
+  * Add fix_test_crontab_is_due.patch to fix timeshifts in tests.
+  * Add locales to Build-Depends so LC_ALL=C.UTF-8 can be used.
+  * Make Build-Depends on python-mock versioned with (>= 1.0.1).
+  * Use LC_ALL=C.UTF-8 when running tests.
+  * Refresh existing patches.
+  * Install upstream changelog.
+  * Update upstream homepage URL to the official one.
+  * celeryd:
+    + Move daemon management scripts to the separate celeryd package.
+    + Document change in NEWS.
+    + Install init scripts from extra instead of contrib.
+    + Move default file from python-celery to celeryd package.
+    + Move postinst and postrm files from python-celery to celeryd package.
+    + Breaks python-celery (<< 3.0.24-1) to avoid file conflicts.
+    + Do not define CELERYD_PID_FILE in /etc/default/celeryd to enable
+      automatic generation by init.d script.
+    + Drop init.d/celeryevcam as it is no longer shipped by upstream.
+  * python-celery
+    + Install supervisord from extra instead of contrib.
+    + Add versioned dependency on python-billiard.
+    + Bump dependency on python-kombu(-doc) to >= 2.5.15.
+    + Add dependency on python-tz.
+    + Drop depenceny on python-amqplib, it has been replaced by
+      python-amqp/python-librabbitmq in python-kombu.
+    + Drop dependency on python-anyjson, as it is required by python-kombu which
+      already has it set as a versioned dependency.
+    + Install celery.1 manpage.
+    + Suggest python-celery-doc.
+  * python-celery-doc
+    + Adapt filenames in d/docs to new upstream names.
+    + Update directories in doc-base.
+
+  [ Jakub Wilk ]
+  * Use canonical URIs for Vcs-* fields.
+
+ -- Michael Fladischer <FladischerMichael@fladi.at>  Sun, 15 Dec 2013 20:58:41 +0100
+
+celery (2.5.3-4) unstable; urgency=low
+
+  * Unconditionally remove /var/log/celery on purge.
+
+ -- Michael Fladischer <FladischerMichael@fladi.at>  Fri, 01 Mar 2013 12:17:32 +0100
+
+celery (2.5.3-3) unstable; urgency=low
+
+  * Remove logfiles during purge if user and group are removed.
+  * Use /nonexistant as $HOME for user celery.
+
+ -- Michael Fladischer <FladischerMichael@fladi.at>  Tue, 12 Feb 2013 08:57:59 +0100
+
+celery (2.5.3-2) unstable; urgency=low
+
+  * Create user celery in maintainer scripts (Closes: #697195).
+  * Update year in d/copyright.
+
+ -- Michael Fladischer <FladischerMichael@fladi.at>  Sun, 13 Jan 2013 19:10:12 +0100
+
+celery (2.5.3-1) unstable; urgency=low
+
+  * New upstream release.
+  * Bump dependencies on kombu to (>= 2.1.5).
+  * Update patches to remove nose-cover3.
+  * Enable init scripts.
+  * Update DEP-5 URL to 1.0.
+  * Bump to standards version 3.9.3.
+
+ -- Michael Fladischer <FladischerMichael@fladi.at>  Mon, 27 Feb 2012 14:58:29 +0100
+
+celery (2.4.6-1) unstable; urgency=low
+
+  * New upstream release.
+    Fixes: CVE-2011-4356
+  * Update copyright to 2012.
+
+ -- Michael Fladischer <FladischerMichael@fladi.at>  Mon, 02 Jan 2012 12:45:47 +0100
+
+celery (2.4.5-1) unstable; urgency=low
+
+  * Initial release (Closes: #526350)
+
+ -- Michael Fladischer <FladischerMichael@fladi.at>  Tue, 27 Dec 2011 11:57:41 +0100

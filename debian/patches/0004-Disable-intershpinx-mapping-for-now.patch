@@ -1,0 +1,25 @@
+From: Michael Fladischer <FladischerMichael@fladi.at>
+Date: Mon, 31 Jul 2017 17:45:13 +0200
+Subject: Disable intershpinx mapping for now.
+
+The best way to fix network requests when building the documentation would be to
+patch INTERSPHINX_MAPPING in sphinx_celery.conf in src:sphinx-celery.
+---
+ docs/conf.py | 4 ----
+ 1 file changed, 4 deletions(-)
+
+diff --git a/docs/conf.py b/docs/conf.py
+index b4419a5..4384c39 100644
+--- a/docs/conf.py
++++ b/docs/conf.py
+@@ -20,10 +20,6 @@ globals().update(conf.build_config(
+         'celery.contrib.sphinx',
+         'celerydocs',
+     ],
+-    extra_intersphinx_mapping={
+-        'cyanide': ('https://cyanide.readthedocs.io/en/latest', None),
+-        'click': ('https://click.palletsprojects.com/en/7.x/', None),
+-    },
+     apicheck_ignore_modules=[
+         'celery.__main__',
+         'celery.contrib.testing',

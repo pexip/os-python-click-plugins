@@ -1,0 +1,11 @@
+0001-lsb-init.patch
+0002-privacy.patch
+0003-Set-shell-in-su-invocation.patch
+0004-Disable-intershpinx-mapping-for-now.patch
+0005-Fix-passing-options-to-pytest.patch
+0006-Don-t-require-pre-commit-it-isn-t-in-Debian.patch
+0007-Moto-isn-t-packaged-for-Debian.patch
+0008-disable-test-for-python3.8.patch
+0009-allow-any-version-of-pytest-timeout.patch
+0010-remove-pytest-celery-from-test-depends.patch
+0011-allow-any-pytest-version.patch

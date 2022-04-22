@@ -1,13 +1,23 @@
 #!/usr/bin/make -f
 
-#setting locale explicitly is needed for running the tests using pbuilder
-export LC_ALL=C.UTF-8
-export LANG=C.UTF-8
-export PYBUILD_TEST_PYTEST=1
-export PYBUILD_BEFORE_TEST=cp -r {dir}/tests {build_dir}
-export PYBUILD_AFTER_TEST=rm -rf {build_dir}/tests
+export PYBUILD_NAME=celery
+export PYBUILD_AFTER_TEST=rm -rf {build_dir}/test.db {build_dir}/14
+export PYBUILD_TEST_ARGS= --ignore=t/unit/backends/test_base.py --ignore=t/unit/backends/test_rpc.py --ignore=t/unit/contrib/test_pytest.py --ignore=t/unit/concurrency/test_eventlet.py --ignore=t/unit/concurrency/test_prefork.py -k "not test_check_privileges[accept_content0] and not test_check_privileges[accept_content1] and not test_check_privileges[accept_content2] and not test_regression_worker_startup_info and not test_with_guid and not test_only_gid and not test_init_mongodb_dnspython2_pymongo3_seedlist" t/unit
+export PYTEST_PLUGINS=celery.contrib.pytest
 
-export PYBUILD_NAME=click-plugins
 
 %:
-	dh  $@ --with python3 --buildsystem pybuild
+	dh $@ --with python3,sphinxdoc --buildsystem=pybuild
+
+override_dh_installman:
+	docbook-to-man debian/manpage.celery.sgml > celery.1
+	dh_installman
+
+execute_after_dh_auto_install:
+	rm -rf $(CURDIR)/debian/python3-celery/usr/bin
+
+override_dh_sphinxdoc:
+ifeq (,$(findstring nodoc, $(DEB_BUILD_OPTIONS)))
+	PYTHONPATH=. python3 -m sphinx -b html -d docs/.build/.doctrees -N docs $(CURDIR)/debian/python-celery-doc/usr/share/doc/python-celery-doc/html
+	dh_sphinxdoc
+endif

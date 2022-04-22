@@ -1,0 +1,37 @@
+From: Brian May <bam@debian.org>
+Date: Wed, 25 May 2016 18:06:17 +1000
+Subject: Set shell in su invocation
+
+See Bug#824786: celeryd: Initscript doesn't start daemon,
+http://bugs.debian.org/824786
+---
+ extra/generic-init.d/celerybeat | 2 +-
+ extra/generic-init.d/celeryd    | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/extra/generic-init.d/celerybeat b/extra/generic-init.d/celerybeat
+index 47c34ef..dffcb24 100755
+--- a/extra/generic-init.d/celerybeat
++++ b/extra/generic-init.d/celerybeat
+@@ -260,7 +260,7 @@ stop_beat () {
+ 
+ _chuid () {
+     ${CELERYBEAT_SU} ${CELERYBEAT_SU_ARGS} \
+-        "$CELERYBEAT_USER" -c "$CELERYBEAT $*"
++        "$CELERYBEAT_USER" --shell=/bin/sh -c "$CELERYBEAT $*"
+ }
+ 
+ start_beat () {
+diff --git a/extra/generic-init.d/celeryd b/extra/generic-init.d/celeryd
+index c93de50..030d260 100755
+--- a/extra/generic-init.d/celeryd
++++ b/extra/generic-init.d/celeryd
+@@ -257,7 +257,7 @@ _get_pids() {
+ 
+ 
+ _chuid () {
+-    ${CELERYD_SU} ${CELERYD_SU_ARGS} "$CELERYD_USER" -c "$CELERYD_MULTI $*"
++    ${CELERYD_SU} ${CELERYD_SU_ARGS} "$CELERYD_USER" --shell=/bin/sh -c "$CELERYD_MULTI $*"
+ }
+ 
+ 

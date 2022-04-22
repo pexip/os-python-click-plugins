@@ -1,0 +1,23 @@
+From: Thomas Goirand <zigo@debian.org>
+Date: Fri, 18 Dec 2020 09:35:42 +0100
+Subject: Allow any version of pytest-timeout
+
+Forwarded: no
+Last-Update: 2020-10-16
+---
+ requirements/test.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/requirements/test.txt b/requirements/test.txt
+index 3be9078..f838d8b 100644
+--- a/requirements/test.txt
++++ b/requirements/test.txt
+@@ -1,7 +1,7 @@
+ pytest~=6.2
+ pytest-celery
+ pytest-subtests
+-pytest-timeout~=1.4.2
++pytest-timeout
+ boto3>=1.9.178
+ -r extras/yaml.txt
+ -r extras/msgpack.txt

@@ -1,28 +1,164 @@
-Source: python-click-plugins
-Maintainer: Pexip AS <packaging@pexip.com>
-XSBC-Pexip-Original-Maintainer: Debian GIS Project <pkg-grass-devel@lists.alioth.debian.org>
-XSBC-Pexip-Original-Uploaders: Johan Van de Wauw <johan@vandewauw.be>
+Source: celery
+Maintainer: Debian Python Team <team+python@tracker.debian.org>
+Uploaders:
+ Michael Fladischer <fladi@debian.org>,
+ Brian May <bam@debian.org>,
 Section: python
 Priority: optional
-Build-Depends: debhelper (>= 10~),
-               dh-python,
-               python3-all,
-               python3-click,
-               python3-pytest,
-               python3-setuptools
-Standards-Version: 4.5.0
-Vcs-Browser: https://salsa.debian.org/debian-gis-team/python-click-plugins/
-Vcs-Git: https://salsa.debian.org/debian-gis-team/python-click-plugins.git
-Homepage: https://github.com/click-contrib/click-plugins
-XS-Pexip-Upstream: http://ftp.debian.org/debian/ bullseye
+Build-Depends:
+ debhelper-compat (= 13),
+ dh-python,
+ docbook-to-man,
+ dvipng,
+ locales,
+ python3-all,
+ python3-billiard (>= 3.6.3.0),
+ python3-boto3,
+ python3-case,
+ python3-click-didyoumean,
+ python3-click-plugins,
+ python3-click-repl,
+ python3-dateutil,
+ python3-doc,
+ python3-eventlet,
+ python3-flaky,
+ python3-future (>=0.18.0),
+ python3-kombu (>= 5.0),
+ python3-memcache,
+ python3-mock,
+ python3-msgpack,
+ python3-nose,
+ python3-openssl,
+ python3-pymongo,
+ python3-pyparsing,
+ python3-pytest,
+ python3-pytest-subtests,
+ python3-pytest-timeout,
+ python3-redis,
+ python3-setuptools,
+ python3-sphinx (>= 2.0.0),
+ python3-sphinx-celery (>= 2.0.0),
+ python3-sphinx-click,
+ python3-sqlalchemy,
+ python3-tz,
+ python3-vine (>= 5.0),
+ python3-yaml,
+ texlive-latex-base,
+ texlive-latex-extra,
+Standards-Version: 4.6.0.1
+Rules-Requires-Root: no
+Vcs-Browser: https://salsa.debian.org/python-team/packages/celery
+Vcs-Git: https://salsa.debian.org/python-team/packages/celery.git
+Homepage: https://github.com/celery/celery
 
-Package: python3-click-plugins
+Package: celery
 Architecture: all
-Depends: ${python3:Depends},
-         ${misc:Depends}
-Description: Click extension to register external CLI commands (Python 3)
- Click plugins allows developers of Click commandline applications to add a
- plugin mechanism to their tools. This allows the creation of subcommands
- registered by those plugins.
+Section: net
+Depends:
+ python3-celery (= ${binary:Version}),
+ ${misc:Depends},
+Breaks:
+ python-celery-common (<< 4.4.2-3),
+Replaces:
+ python-celery-common (<< 4.4.2-3),
+Description: async task/job queue based on message passing (common files)
+ Celery is an open source asynchronous task queue/job queue based on
+ distributed message passing. It is focused on real-time operation,
+ but supports scheduling as well.
  .
- This is the Python 3 version of the package.
+ The execution units, called tasks, are executed concurrently on one
+ or more worker nodes. Tasks can execute asynchronously (in the
+ background) or synchronously (wait until ready).
+ .
+ Celery is written in Python, but the protocol can be implemented
+ in any language. It can also operate with other languages using
+ webhooks.
+ .
+ The recommended message broker is RabbitMQ, but limited support for Redis,
+ Beanstalk, MongoDB, CouchDB, and databases (using SQLAlchemy or the Django
+ ORM) is also available. Celery is easy to integrate with Django, using the
+ python-django-celery package.
+ .
+ This package contains the common files of the library.
+
+Package: python-celery-common
+Architecture: all
+Section: oldlibs
+Depends:
+ celery (>= ${binary:Version}),
+ ${misc:Depends},
+Description: async task/job queue - transitional dummy package
+ Celery is an open source asynchronous task queue/job queue based on
+ distributed message passing. It is focused on real-time operation,
+ but supports scheduling as well.
+ .
+ This is an empty transitional package to the "celery" package.
+ Once installed it can be safely removed.
+
+Package: python-celery-doc
+Architecture: all
+Multi-Arch: foreign
+Section: doc
+Depends:
+ libjs-jquery,
+ ${misc:Depends},
+ ${sphinxdoc:Depends},
+Description: async task/job queue based on message passing (Documentation)
+ Celery is an open source asynchronous task queue/job queue based on
+ distributed message passing. It is focused on real-time operation,
+ but supports scheduling as well.
+ .
+ The execution units, called tasks, are executed concurrently on one
+ or more worker nodes. Tasks can execute asynchronously (in the
+ background) or synchronously (wait until ready).
+ .
+ Celery is written in Python, but the protocol can be implemented
+ in any language. It can also operate with other languages using
+ webhooks.
+ .
+ The recommended message broker is RabbitMQ, but limited support for Redis,
+ Beanstalk, MongoDB, CouchDB, and databases (using SQLAlchemy or the Django
+ ORM) is also available. Celery is easy to integrate with Django, using the
+ python-django-celery package.
+ .
+ This package contains the documentation.
+
+Package: python3-celery
+Architecture: all
+Depends:
+ python3-billiard (>= 3.3.0.23),
+ python3-click-didyoumean,
+ python3-click-repl,
+ python3-dateutil,
+ python3-ephem,
+ python3-kombu (>= 5.0),
+ python3-memcache,
+ python3-pkg-resources,
+ python3-pyparsing,
+ python3-tz,
+ python3-vine (>= 5.0),
+ ${misc:Depends},
+ ${python3:Depends},
+Suggests:
+ python-celery-doc,
+ python3-redis,
+ python3-sqlalchemy,
+Description: async task/job queue based on message passing (Python3 version)
+ Celery is an open source asynchronous task queue/job queue based on
+ distributed message passing. It is focused on real-time operation,
+ but supports scheduling as well.
+ .
+ The execution units, called tasks, are executed concurrently on one
+ or more worker nodes. Tasks can execute asynchronously (in the
+ background) or synchronously (wait until ready).
+ .
+ Celery is written in Python, but the protocol can be implemented
+ in any language. It can also operate with other languages using
+ webhooks.
+ .
+ The recommended message broker is RabbitMQ, but limited support for Redis,
+ Beanstalk, MongoDB, CouchDB, and databases (using SQLAlchemy or the Django
+ ORM) is also available. Celery is easy to integrate with Django, using the
+ python-django-celery package.
+ .
+ This package contains the Python 3 version of the library.

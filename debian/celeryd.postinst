@@ -1,0 +1,38 @@
+#!/bin/sh
+
+set -e
+
+case "$1" in
+    configure|reconfigure)
+        if ! getent passwd celery > /dev/null ; then
+            echo 'Adding system user for Celery' 1>&2
+            adduser \
+                --system \
+                --quiet \
+                --home /nonexistant \
+                --no-create-home \
+                --group \
+                --gecos "Celery daemon" \
+                celery
+        fi
+
+        if ! dpkg-statoverride --list /var/log/celery >/dev/null; then
+            chown celery:adm /var/log/celery
+            chmod 750 /var/log/celery
+        fi
+    ;;
+
+    abort-upgrade|abort-remove|abort-deconfigure)
+        exit 0
+    ;;
+
+    *)
+        echo "postinst called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+esac
+
+#DEBHELPER#
+
+exit 0
+

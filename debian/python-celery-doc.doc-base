@@ -1,0 +1,32 @@
+Document: python-celery-doc
+Title: Python Celery Documentation
+Author: Ask Solem
+Section: Programming/Python
+
+Format: HTML
+Index: /usr/share/doc/python-celery-doc/html/index.html
+Files: /usr/share/doc/python-celery-doc/html/*.html
+       /usr/share/doc/python-celery-doc/html/_modules/*.html
+       /usr/share/doc/python-celery-doc/html/_modules/billiard/*.html
+       /usr/share/doc/python-celery-doc/html/_modules/celery/*.html
+       /usr/share/doc/python-celery-doc/html/_modules/celery/app/*.html
+       /usr/share/doc/python-celery-doc/html/_modules/celery/apps/*.html
+       /usr/share/doc/python-celery-doc/html/_modules/celery/backends/*.html
+       /usr/share/doc/python-celery-doc/html/_modules/celery/bin/*.html
+       /usr/share/doc/python-celery-doc/html/_modules/celery/concurrency/*.html
+       /usr/share/doc/python-celery-doc/html/_modules/celery/contrib/*.html
+       /usr/share/doc/python-celery-doc/html/_modules/celery/events/*.html
+       /usr/share/doc/python-celery-doc/html/_modules/celery/loaders/*.html
+       /usr/share/doc/python-celery-doc/html/_modules/celery/security/*.html
+       /usr/share/doc/python-celery-doc/html/_modules/celery/utils/*.html
+       /usr/share/doc/python-celery-doc/html/_modules/celery/worker/*.html
+       /usr/share/doc/python-celery-doc/html/_modules/kombu/*.html
+       /usr/share/doc/python-celery-doc/html/django/*.html
+       /usr/share/doc/python-celery-doc/html/getting-started/*.html
+       /usr/share/doc/python-celery-doc/html/getting-started/backends-and-brokers/*.html
+       /usr/share/doc/python-celery-doc/html/history/*.html
+       /usr/share/doc/python-celery-doc/html/internals/*.html
+       /usr/share/doc/python-celery-doc/html/internals/reference/*.html
+       /usr/share/doc/python-celery-doc/html/reference/*.html
+       /usr/share/doc/python-celery-doc/html/tutorials/*.html
+       /usr/share/doc/python-celery-doc/html/userguide/*.html

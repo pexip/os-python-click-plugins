@@ -1,5 +1,4 @@
----
-Bug-Database: https://github.com/click-contrib/click-plugins/issues
-Bug-Submit: https://github.com/click-contrib/click-plugins/issues/new
-Repository: https://github.com/click-contrib/click-plugins.git
-Repository-Browse: https://github.com/click-contrib/click-plugins
+Bug-Database: https://github.com/celery/celery/issues
+Bug-Submit: https://github.com/celery/celery/issues/new
+Repository: https://github.com/celery/celery.git
+Repository-Browse: https://github.com/celery/celery

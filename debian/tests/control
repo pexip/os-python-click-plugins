@@ -1,0 +1,5 @@
+Tests: upstream
+Depends:
+ python3-all,
+ @,
+ @builddeps@,

@@ -1,0 +1,29 @@
+From: Andrey Rahmatullin <wrar@debian.org>
+Date: Wed, 7 Aug 2019 14:37:57 +0500
+Subject: Fix passing options to pytest.
+
+---
+ setup.py | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/setup.py b/setup.py
+index da60b24..e8a333f 100755
+--- a/setup.py
++++ b/setup.py
+@@ -2,6 +2,7 @@
+ import codecs
+ import os
+ import re
++import shlex
+ import sys
+ 
+ import setuptools
+@@ -144,7 +145,7 @@ class pytest(setuptools.command.test.test):
+ 
+     def run_tests(self):
+         import pytest as _pytest
+-        sys.exit(_pytest.main(self.pytest_args))
++        sys.exit(_pytest.main(shlex.split(self.pytest_args)))
+ 
+ # -*- %%% -*-
+ 

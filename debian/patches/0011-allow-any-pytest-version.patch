@@ -1,0 +1,20 @@
+From: Thomas Goirand <zigo@debian.org>
+Date: Fri, 18 Dec 2020 09:35:43 +0100
+Subject: Allow any pytest version
+
+Forwarded: no
+Last-Update: 2020-10-16
+---
+ requirements/test.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/requirements/test.txt b/requirements/test.txt
+index ba74ad8..e830422 100644
+--- a/requirements/test.txt
++++ b/requirements/test.txt
+@@ -1,4 +1,4 @@
+-pytest~=6.2
++pytest
+ pytest-subtests
+ pytest-timeout
+ boto3>=1.9.178

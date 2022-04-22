@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# distro tests appear to be intentional to fail:
+# https://github.com/celery/celery/issues/2517
+# integration tests require a rabbitmq-server:
+# https://github.com/celery/celery/issues/3917
+
+set -e
+for p in $(py3versions -s); do
+    $p -m pytest \
+      -p celery.contrib.pytest \
+      --ignore=t/unit/backends/test_base.py \
+      --ignore=t/unit/backends/test_rpc.py \
+      --ignore=t/unit/contrib/test_pytest.py \
+      --ignore=t/unit/concurrency/test_eventlet.py \
+      --ignore=t/unit/concurrency/test_prefork.py \
+      -k "not test_check_privileges[accept_content0] and not test_check_privileges[accept_content1] and not test_check_privileges[accept_content2] and not test_regression_worker_startup_info and not test_with_guid and not test_only_gid and not test_init_mongodb_dnspython2_pymongo3_seedlist" \
+      t/unit
+done
