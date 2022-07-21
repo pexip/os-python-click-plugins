@@ -1,186 +1,539 @@
+.. image:: http://docs.celeryproject.org/en/latest/_images/celery-banner-small.png
+
+|build-status| |coverage| |license| |wheel| |pyversion| |pyimp| |ocbackerbadge| |ocsponsorbadge|
+
+:Version: 5.2.6 (dawn-chorus)
+:Web: https://docs.celeryproject.org/en/stable/index.html
+:Download: https://pypi.org/project/celery/
+:Source: https://github.com/celery/celery/
+:Keywords: task, queue, job, async, rabbitmq, amqp, redis,
+  python, distributed, actors
+
+Donations
+=========
+
+This project relies on your generous donations.
+
+If you are using Celery to create a commercial product, please consider becoming our `backer`_ or our `sponsor`_ to ensure Celery's future.
+
+.. _`backer`: https://opencollective.com/celery#backer
+.. _`sponsor`: https://opencollective.com/celery#sponsor
+
+For enterprise
+==============
+
+Available as part of the Tidelift Subscription.
+
+The maintainers of ``celery`` and thousands of other packages are working with Tidelift to deliver commercial support and maintenance for the open source dependencies you use to build your applications. Save time, reduce risk, and improve code health, while paying the maintainers of the exact dependencies you use. `Learn more. <https://tidelift.com/subscription/pkg/pypi-celery?utm_source=pypi-celery&utm_medium=referral&utm_campaign=enterprise&utm_term=repo>`_
+
+What's a Task Queue?
+====================
+
+Task queues are used as a mechanism to distribute work across threads or
+machines.
+
+A task queue's input is a unit of work, called a task, dedicated worker
+processes then constantly monitor the queue for new work to perform.
+
+Celery communicates via messages, usually using a broker
+to mediate between clients and workers. To initiate a task a client puts a
+message on the queue, the broker then delivers the message to a worker.
+
+A Celery system can consist of multiple workers and brokers, giving way
+to high availability and horizontal scaling.
+
+Celery is written in Python, but the protocol can be implemented in any
+language. In addition to Python there's node-celery_ for Node.js,
+a `PHP client`_, `gocelery`_ for golang, and rusty-celery_ for Rust.
+
+Language interoperability can also be achieved by using webhooks
+in such a way that the client enqueues an URL to be requested by a worker.
+
+.. _node-celery: https://github.com/mher/node-celery
+.. _`PHP client`: https://github.com/gjedeer/celery-php
+.. _`gocelery`: https://github.com/gocelery/gocelery
+.. _rusty-celery: https://github.com/rusty-celery/rusty-celery
+
+What do I need?
+===============
+
+Celery version 5.2.0 runs on,
+
+- Python (3.7, 3.8, 3.9, 3.10)
+- PyPy3.7 (7.3.7+)
+
+
+This is the version of celery which will support Python 3.7 or newer.
+
+If you're running an older version of Python, you need to be running
+an older version of Celery:
+
+- Python 2.6: Celery series 3.1 or earlier.
+- Python 2.5: Celery series 3.0 or earlier.
+- Python 2.4: Celery series 2.2 or earlier.
+- Python 2.7: Celery 4.x series.
+- Python 3.6: Celery 5.1 or earlier.
+
+Celery is a project with minimal funding,
+so we don't support Microsoft Windows.
+Please don't open any issues related to that platform.
+
+*Celery* is usually used with a message broker to send and receive messages.
+The RabbitMQ, Redis transports are feature complete,
+but there's also experimental support for a myriad of other solutions, including
+using SQLite for local development.
+
+*Celery* can run on a single machine, on multiple machines, or even
+across datacenters.
+
+Get Started
+===========
+
+If this is the first time you're trying to use Celery, or you're
+new to Celery v5.2.0 coming from previous versions then you should read our
+getting started tutorials:
+
+- `First steps with Celery`_
+
+    Tutorial teaching you the bare minimum needed to get started with Celery.
+
+- `Next steps`_
+
+    A more complete overview, showing more features.
+
+.. _`First steps with Celery`:
+    http://docs.celeryproject.org/en/latest/getting-started/first-steps-with-celery.html
+
+.. _`Next steps`:
+    http://docs.celeryproject.org/en/latest/getting-started/next-steps.html
+
+ You can also get started with Celery by using a hosted broker transport CloudAMQP. The largest hosting provider of RabbitMQ is a proud sponsor of Celery.
+
+Celery is...
 =============
-click-plugins
+
+- **Simple**
+
+    Celery is easy to use and maintain, and does *not need configuration files*.
+
+    It has an active, friendly community you can talk to for support,
+    like at our `mailing-list`_, or the IRC channel.
+
+    Here's one of the simplest applications you can make:
+
+    .. code-block:: python
+
+        from celery import Celery
+
+        app = Celery('hello', broker='amqp://guest@localhost//')
+
+        @app.task
+        def hello():
+            return 'hello world'
+
+- **Highly Available**
+
+    Workers and clients will automatically retry in the event
+    of connection loss or failure, and some brokers support
+    HA in way of *Primary/Primary* or *Primary/Replica* replication.
+
+- **Fast**
+
+    A single Celery process can process millions of tasks a minute,
+    with sub-millisecond round-trip latency (using RabbitMQ,
+    py-librabbitmq, and optimized settings).
+
+- **Flexible**
+
+    Almost every part of *Celery* can be extended or used on its own,
+    Custom pool implementations, serializers, compression schemes, logging,
+    schedulers, consumers, producers, broker transports, and much more.
+
+It supports...
+================
+
+    - **Message Transports**
+
+        - RabbitMQ_, Redis_, Amazon SQS
+
+    - **Concurrency**
+
+        - Prefork, Eventlet_, gevent_, single threaded (``solo``)
+
+    - **Result Stores**
+
+        - AMQP, Redis
+        - memcached
+        - SQLAlchemy, Django ORM
+        - Apache Cassandra, IronCache, Elasticsearch
+
+    - **Serialization**
+
+        - *pickle*, *json*, *yaml*, *msgpack*.
+        - *zlib*, *bzip2* compression.
+        - Cryptographic message signing.
+
+.. _`Eventlet`: http://eventlet.net/
+.. _`gevent`: http://gevent.org/
+
+.. _RabbitMQ: https://rabbitmq.com
+.. _Redis: https://redis.io
+.. _SQLAlchemy: http://sqlalchemy.org
+
+Framework Integration
+=====================
+
+Celery is easy to integrate with web frameworks, some of which even have
+integration packages:
+
+    +--------------------+------------------------+
+    | `Django`_          | not needed             |
+    +--------------------+------------------------+
+    | `Pyramid`_         | `pyramid_celery`_      |
+    +--------------------+------------------------+
+    | `Pylons`_          | `celery-pylons`_       |
+    +--------------------+------------------------+
+    | `Flask`_           | not needed             |
+    +--------------------+------------------------+
+    | `web2py`_          | `web2py-celery`_       |
+    +--------------------+------------------------+
+    | `Tornado`_         | `tornado-celery`_      |
+    +--------------------+------------------------+
+
+The integration packages aren't strictly necessary, but they can make
+development easier, and sometimes they add important hooks like closing
+database connections at ``fork``.
+
+.. _`Django`: https://djangoproject.com/
+.. _`Pylons`: http://pylonsproject.org/
+.. _`Flask`: http://flask.pocoo.org/
+.. _`web2py`: http://web2py.com/
+.. _`Bottle`: https://bottlepy.org/
+.. _`Pyramid`: http://docs.pylonsproject.org/en/latest/docs/pyramid.html
+.. _`pyramid_celery`: https://pypi.org/project/pyramid_celery/
+.. _`celery-pylons`: https://pypi.org/project/celery-pylons/
+.. _`web2py-celery`: https://code.google.com/p/web2py-celery/
+.. _`Tornado`: http://www.tornadoweb.org/
+.. _`tornado-celery`: https://github.com/mher/tornado-celery/
+
+.. _celery-documentation:
+
+Documentation
 =============
 
-.. image:: https://travis-ci.org/click-contrib/click-plugins.svg?branch=master
-    :target: https://travis-ci.org/click-contrib/click-plugins?branch=master
+The `latest documentation`_ is hosted at Read The Docs, containing user guides,
+tutorials, and an API reference.
 
-.. image:: https://coveralls.io/repos/click-contrib/click-plugins/badge.svg?branch=master&service=github
-    :target: https://coveralls.io/github/click-contrib/click-plugins?branch=master
+最新的中文文档托管在 https://www.celerycn.io/ 中，包含用户指南、教程、API接口等。
 
-An extension module for `click <https://github.com/mitsuhiko/click>`_ to register
-external CLI commands via setuptools entry-points.
+.. _`latest documentation`: http://docs.celeryproject.org/en/latest/
 
-
-Why?
-----
-
-Lets say you develop a commandline interface and someone requests a new feature
-that is absolutely related to your project but would have negative consequences
-like additional dependencies, major refactoring, or maybe its just too domain
-specific to be supported directly.  Rather than developing a separate standalone
-utility you could offer up a `setuptools entry point <https://pythonhosted.org/setuptools/setuptools.html#dynamic-discovery-of-services-and-plugins>`_
-that allows others to use your commandline utility as a home for their related
-sub-commands.  You get to choose where these sub-commands or sub-groups CAN be
-registered but the plugin developer gets to choose they ARE registered.  You
-could have all plugins register alongside the core commands, in a special
-sub-group, across multiple sub-groups, or some combination.
-
-
-Enabling Plugins
-----------------
-
-For a more detailed example see the `examples <https://github.com/click-contrib/click-plugins/tree/master/example>`_ section.
-
-The only requirement is decorating ``click.group()`` with ``click_plugins.with_plugins()``
-which handles attaching external commands and groups.  In this case the core CLI developer
-registers CLI plugins from ``core_package.cli_plugins``.
-
-.. code-block:: python
-
-    from pkg_resources import iter_entry_points
-
-    import click
-    from click_plugins import with_plugins
-
-
-    @with_plugins(iter_entry_points('core_package.cli_plugins'))
-    @click.group()
-    def cli():
-        """Commandline interface for yourpackage."""
-
-    @cli.command()
-    def subcommand():
-        """Subcommand that does something."""
-
-
-Developing Plugins
-------------------
-
-Plugin developers need to register their sub-commands or sub-groups to an
-entry-point in their ``setup.py`` that is loaded by the core package.
-
-.. code-block:: python
-
-    from setuptools import setup
-
-    setup(
-        name='yourscript',
-        version='0.1',
-        py_modules=['yourscript'],
-        install_requires=[
-            'click',
-        ],
-        entry_points='''
-            [core_package.cli_plugins]
-            cool_subcommand=yourscript.cli:cool_subcommand
-            another_subcommand=yourscript.cli:another_subcommand
-        ''',
-    )
-
-
-Broken and Incompatible Plugins
--------------------------------
-
-Any sub-command or sub-group that cannot be loaded is caught and converted to
-a ``click_plugins.core.BrokenCommand()`` rather than just crashing the entire
-CLI.  The short-help is converted to a warning message like:
-
-.. code-block:: console
-
-    Warning: could not load plugin. See ``<CLI> <command/group> --help``.
-
-and if the sub-command or group is executed the entire traceback is printed.
-
-
-Best Practices and Extra Credit
--------------------------------
-
-Opening a CLI to plugins encourages other developers to independently extend
-functionality independently but there is no guarantee these new features will
-be "on brand".  Plugin developers are almost certainly already using features
-in the core package the CLI belongs to so defining commonly used arguments and
-options in one place lets plugin developers reuse these flags to produce a more
-cohesive CLI.  If the CLI is simple maybe just define them at the top of
-``yourpackage/cli.py`` or for more complex packages something like
-``yourpackage/cli/options.py``.  These common options need to be easy to find
-and be well documented so that plugin developers know what variable to give to
-their sub-command's function and what object they can expect to receive.  Don't
-forget to document non-obvious callbacks.
-
-Keep in mind that plugin developers also have access to the parent group's
-``ctx.obj``, which is very useful for passing things like verbosity levels or
-config values around to sub-commands.
-
-Here's some code that sub-commands could re-use:
-
-.. code-block:: python
-
-    from multiprocessing import cpu_count
-
-    import click
-
-    jobs_opt = click.option(
-        '-j', '--jobs', metavar='CORES', type=click.IntRange(min=1, max=cpu_count()), default=1,
-        show_default=True, help="Process data across N cores."
-    )
-
-Plugin developers can access this with:
-
-.. code-block:: python
-
-    import click
-    import parent_cli_package.cli.options
-
-
-    @click.command()
-    @parent_cli_package.cli.options.jobs_opt
-    def subcommand(jobs):
-        """I do something domain specific."""
-
+.. _celery-installation:
 
 Installation
+============
+
+You can install Celery either via the Python Package Index (PyPI)
+or from source.
+
+To install using ``pip``:
+
+::
+
+
+    $ pip install -U Celery
+
+.. _bundles:
+
+Bundles
+-------
+
+Celery also defines a group of bundles that can be used
+to install Celery and the dependencies for a given feature.
+
+You can specify these in your requirements or on the ``pip``
+command-line by using brackets. Multiple bundles can be specified by
+separating them by commas.
+
+::
+
+
+    $ pip install "celery[amqp]"
+
+    $ pip install "celery[amqp,redis,auth,msgpack]"
+
+The following bundles are available:
+
+Serializers
+~~~~~~~~~~~
+
+:``celery[auth]``:
+    for using the ``auth`` security serializer.
+
+:``celery[msgpack]``:
+    for using the msgpack serializer.
+
+:``celery[yaml]``:
+    for using the yaml serializer.
+
+Concurrency
+~~~~~~~~~~~
+
+:``celery[eventlet]``:
+    for using the ``eventlet`` pool.
+
+:``celery[gevent]``:
+    for using the ``gevent`` pool.
+
+Transports and Backends
+~~~~~~~~~~~~~~~~~~~~~~~
+
+:``celery[amqp]``:
+    for using the RabbitMQ amqp python library.
+
+:``celery[redis]``:
+    for using Redis as a message transport or as a result backend.
+
+:``celery[sqs]``:
+    for using Amazon SQS as a message transport.
+
+:``celery[tblib``]:
+    for using the ``task_remote_tracebacks`` feature.
+
+:``celery[memcache]``:
+    for using Memcached as a result backend (using ``pylibmc``)
+
+:``celery[pymemcache]``:
+    for using Memcached as a result backend (pure-Python implementation).
+
+:``celery[cassandra]``:
+    for using Apache Cassandra as a result backend with DataStax driver.
+
+:``celery[azureblockblob]``:
+    for using Azure Storage as a result backend (using ``azure-storage``)
+
+:``celery[s3]``:
+    for using S3 Storage as a result backend.
+
+:``celery[couchbase]``:
+    for using Couchbase as a result backend.
+
+:``celery[arangodb]``:
+    for using ArangoDB as a result backend.
+
+:``celery[elasticsearch]``:
+    for using Elasticsearch as a result backend.
+
+:``celery[riak]``:
+    for using Riak as a result backend.
+
+:``celery[cosmosdbsql]``:
+    for using Azure Cosmos DB as a result backend (using ``pydocumentdb``)
+
+:``celery[zookeeper]``:
+    for using Zookeeper as a message transport.
+
+:``celery[sqlalchemy]``:
+    for using SQLAlchemy as a result backend (*supported*).
+
+:``celery[pyro]``:
+    for using the Pyro4 message transport (*experimental*).
+
+:``celery[slmq]``:
+    for using the SoftLayer Message Queue transport (*experimental*).
+
+:``celery[consul]``:
+    for using the Consul.io Key/Value store as a message transport or result backend (*experimental*).
+
+:``celery[django]``:
+    specifies the lowest version possible for Django support.
+
+    You should probably not use this in your requirements, it's here
+    for informational purposes only.
+
+
+.. _celery-installing-from-source:
+
+Downloading and installing from source
+--------------------------------------
+
+Download the latest version of Celery from PyPI:
+
+https://pypi.org/project/celery/
+
+You can install it by doing the following,:
+
+::
+
+
+    $ tar xvfz celery-0.0.0.tar.gz
+    $ cd celery-0.0.0
+    $ python setup.py build
+    # python setup.py install
+
+The last command must be executed as a privileged user if
+you aren't currently using a virtualenv.
+
+.. _celery-installing-from-git:
+
+Using the development version
+-----------------------------
+
+With pip
+~~~~~~~~
+
+The Celery development version also requires the development
+versions of ``kombu``, ``amqp``, ``billiard``, and ``vine``.
+
+You can install the latest snapshot of these using the following
+pip commands:
+
+::
+
+
+    $ pip install https://github.com/celery/celery/zipball/master#egg=celery
+    $ pip install https://github.com/celery/billiard/zipball/master#egg=billiard
+    $ pip install https://github.com/celery/py-amqp/zipball/master#egg=amqp
+    $ pip install https://github.com/celery/kombu/zipball/master#egg=kombu
+    $ pip install https://github.com/celery/vine/zipball/master#egg=vine
+
+With git
+~~~~~~~~
+
+Please see the Contributing section.
+
+.. _getting-help:
+
+Getting Help
+============
+
+.. _mailing-list:
+
+Mailing list
 ------------
 
-With ``pip``:
+For discussions about the usage, development, and future of Celery,
+please join the `celery-users`_ mailing list.
 
-.. code-block:: console
+.. _`celery-users`: https://groups.google.com/group/celery-users/
 
-    $ pip install click-plugins
+.. _irc-channel:
 
-From source:
+IRC
+---
 
-.. code-block:: console
+Come chat with us on IRC. The **#celery** channel is located at the
+`Libera Chat`_ network.
 
-    $ git clone https://github.com/click-contrib/click-plugins.git
-    $ cd click-plugins
-    $ python setup.py install
+.. _`Libera Chat`: https://libera.chat/
 
+.. _bug-tracker:
 
-Developing
-----------
+Bug tracker
+===========
 
-.. code-block:: console
+If you have any suggestions, bug reports, or annoyances please report them
+to our issue tracker at https://github.com/celery/celery/issues/
 
-    $ git clone https://github.com/click-contrib/click-plugins.git
-    $ cd click-plugins
-    $ pip install -e .\[dev\]
-    $ pytest tests --cov click_plugins --cov-report term-missing
+.. _wiki:
 
+Wiki
+====
 
-Changelog
----------
+https://github.com/celery/celery/wiki
 
-See ``CHANGES.txt``
+Credits
+=======
 
+.. _contributing-short:
 
-Authors
+Contributors
+------------
+
+This project exists thanks to all the people who contribute. Development of
+`celery` happens at GitHub: https://github.com/celery/celery
+
+You're highly encouraged to participate in the development
+of `celery`. If you don't like GitHub (for some reason) you're welcome
+to send regular patches.
+
+Be sure to also read the `Contributing to Celery`_ section in the
+documentation.
+
+.. _`Contributing to Celery`:
+    http://docs.celeryproject.org/en/master/contributing.html
+
+|oc-contributors|
+
+.. |oc-contributors| image:: https://opencollective.com/celery/contributors.svg?width=890&button=false
+    :target: https://github.com/celery/celery/graphs/contributors
+
+Backers
 -------
 
-See ``AUTHORS.txt``
+Thank you to all our backers! 🙏 [`Become a backer`_]
 
+.. _`Become a backer`: https://opencollective.com/celery#backer
+
+|oc-backers|
+
+.. |oc-backers| image:: https://opencollective.com/celery/backers.svg?width=890
+    :target: https://opencollective.com/celery#backers
+
+Sponsors
+--------
+
+Support this project by becoming a sponsor. Your logo will show up here with a
+link to your website. [`Become a sponsor`_]
+
+.. _`Become a sponsor`: https://opencollective.com/celery#sponsor
+
+|oc-sponsors|
+
+.. |oc-sponsors| image:: https://opencollective.com/celery/sponsor/0/avatar.svg
+    :target: https://opencollective.com/celery/sponsor/0/website
+
+.. _license:
 
 License
--------
+=======
 
-See ``LICENSE.txt``
+This software is licensed under the `New BSD License`. See the ``LICENSE``
+file in the top distribution directory for the full license text.
+
+.. # vim: syntax=rst expandtab tabstop=4 shiftwidth=4 shiftround
+
+.. |build-status| image:: https://github.com/celery/celery/actions/workflows/python-package.yml/badge.svg
+    :alt: Build status
+    :target: https://github.com/celery/celery/actions/workflows/python-package.yml
+
+.. |coverage| image:: https://codecov.io/github/celery/celery/coverage.svg?branch=master
+    :target: https://codecov.io/github/celery/celery?branch=master
+
+.. |license| image:: https://img.shields.io/pypi/l/celery.svg
+    :alt: BSD License
+    :target: https://opensource.org/licenses/BSD-3-Clause
+
+.. |wheel| image:: https://img.shields.io/pypi/wheel/celery.svg
+    :alt: Celery can be installed via wheel
+    :target: https://pypi.org/project/celery/
+
+.. |pyversion| image:: https://img.shields.io/pypi/pyversions/celery.svg
+    :alt: Supported Python versions.
+    :target: https://pypi.org/project/celery/
+
+.. |pyimp| image:: https://img.shields.io/pypi/implementation/celery.svg
+    :alt: Supported Python implementations.
+    :target: https://pypi.org/project/celery/
+
+.. |ocbackerbadge| image:: https://opencollective.com/celery/backers/badge.svg
+    :alt: Backers on Open Collective
+    :target: #backers
+
+.. |ocsponsorbadge| image:: https://opencollective.com/celery/sponsors/badge.svg
+    :alt: Sponsors on Open Collective
+    :target: #sponsors
+
+.. |downloads| image:: https://pepy.tech/badge/celery
+    :alt: Downloads
+    :target: https://pepy.tech/project/celery
