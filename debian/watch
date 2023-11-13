@@ -3,5 +3,5 @@ opts=\
 dversionmangle=s/\+(debian|dfsg|ds|deb)\d*$//,\
 uversionmangle=s/(\d)[_\.\-\+]?((RC|rc|pre|dev|beta|alpha)\d*)$/$1~$2/,\
 filenamemangle=s/(?:.*?)?[vr]?(\d[\d\.\-\w]*)\.(tgz|tbz|txz|(?:tar\.(?:gz|bz2|xz)))/click-plugins-$1.$2/ \
-https://github.com/click-contrib/click-plugins/releases \
-(?:.*?/archive/)?(?:rel|r|v|click-plugins)?[\-\_]?(\d[\d\-\.]+)\.(?:tgz|tbz|txz|(?:tar\.(?:gz|bz2|xz)))
+https://github.com/click-contrib/click-plugins/tags \
+(?:.*?/archive/(?:.*?/)?)?(?:rel|r|v|click-plugins)?[\-\_]?(\d[\d\-\.]+)\.(?:tgz|tbz|txz|(?:tar\.(?:gz|bz2|xz)))
