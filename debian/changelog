@@ -1,3 +1,18 @@
+python-click-plugins (1.1.1-5) unstable; urgency=medium
+
+  * Team upload.
+  * Bump debhelper compat to 13.
+  * Use autopkgtest-pkg-pybuild testsuite.
+  * Enable Salsa CI.
+  * Remove generated files in clean target.
+    (closes: #1046588)
+  * Switch to dh-sequence-*.
+  * Bump Standards-Version to 4.7.0, no changes.
+  * Add patch to fix FTBFS with click 8.2.
+    (closes: #1098595)
+
+ -- Bas Couwenberg <sebastic@debian.org>  Sat, 22 Feb 2025 10:04:35 +0100
+
 python-click-plugins (1.1.1-4) unstable; urgency=medium
 
   * Team upload.
