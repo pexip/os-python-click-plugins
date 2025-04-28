@@ -4,17 +4,19 @@ XSBC-Pexip-Original-Maintainer: Debian GIS Project <pkg-grass-devel@lists.alioth
 XSBC-Pexip-Original-Uploaders: Johan Van de Wauw <johan@vandewauw.be>
 Section: python
 Priority: optional
-Build-Depends: debhelper-compat (= 12),
+Build-Depends: debhelper-compat (= 13),
                dh-python,
+               dh-sequence-python3,
                python3-all,
                python3-click,
                python3-pytest,
                python3-setuptools
-Standards-Version: 4.6.1
+Standards-Version: 4.7.0
 Vcs-Browser: https://salsa.debian.org/debian-gis-team/python-click-plugins/
 Vcs-Git: https://salsa.debian.org/debian-gis-team/python-click-plugins.git
 Homepage: https://github.com/click-contrib/click-plugins
 Rules-Requires-Root: no
+Testsuite: autopkgtest-pkg-pybuild
 XS-Pexip-Upstream: http://deb.debian.org/debian/ trixie
 
 Package: python3-click-plugins
